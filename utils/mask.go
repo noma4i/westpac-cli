@@ -28,17 +28,13 @@ func maskFrom(s string, keepFirst int) string {
 		return s
 	}
 	runes := []rune(s)
-	for i, r := range runes {
+	for i := range runes {
 		if i < keepFirst {
 			continue
 		}
-		switch {
-		case r >= 'A' && r <= 'Z':
-			runes[i] = '\u2588'
-		case r >= 'a' && r <= 'z':
-			runes[i] = '\u2593'
-		case r >= '0' && r <= '9':
-			runes[i] = '\u2592'
+		r := runes[i]
+		if (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9') {
+			runes[i] = '*'
 		}
 	}
 	return string(runes)

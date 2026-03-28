@@ -105,7 +105,7 @@ func (m AccountsModel) View() string {
 		line := fmt.Sprintf("%-*s  %*s%s", nameWidth, name, balWidth, balStr, accNum)
 
 		if i == m.cursor {
-			b.WriteString(SelectedStyle.Width(m.width - 2).Render(line))
+			b.WriteString(SelectedStyle.Width(m.width).Render(line))
 		} else {
 			namePart := fmt.Sprintf("%-*s  ", nameWidth, name)
 			balPart := MoneyStyle(acc.CurrentBalance).Render(fmt.Sprintf("%*s", balWidth, balStr))

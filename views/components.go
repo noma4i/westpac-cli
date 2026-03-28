@@ -33,11 +33,10 @@ func RenderKeyValue(label, value string) string {
 }
 
 func RenderHeader(title string, width int) string {
-	w := width - 2
-	if w < 10 {
-		w = 10
+	if width < 10 {
+		width = 10
 	}
-	return HeaderStyle.Width(w).Render(title)
+	return HeaderStyle.Width(width).Render(title)
 }
 
 func RenderBox(content string, width int) string {

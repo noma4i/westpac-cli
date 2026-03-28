@@ -146,9 +146,9 @@ func (m TxnDetailModel) buildLines() []string {
 		}
 
 		if d.Description != "" {
-			lines = append(lines, RenderKeyValue("Description", d.Description))
+			lines = append(lines, RenderKeyValue("Description", utils.MaskPartial(d.Description, 5)))
 		} else if d.Narrative != "" {
-			lines = append(lines, RenderKeyValue("Description", d.Narrative))
+			lines = append(lines, RenderKeyValue("Description", utils.MaskPartial(d.Narrative, 5)))
 		}
 
 		if d.AuthStatus != "" {

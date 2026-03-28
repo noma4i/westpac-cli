@@ -281,12 +281,14 @@ func (m TransactionsModel) View() string {
 	}
 
 	// Column widths
+	// format: " %-dateW  %-descW  %amtW" inside NormalStyle(Padding 0,1)
+	// total = 1 + dateW + 2 + descW + 2 + amtW + 2(padding) = descW + 33
 	dateW := 12
-	descW := m.width - dateW - 18 - 6
+	amtW := 14
+	descW := m.width - dateW - amtW - 9 // 7 + 2 right margin
 	if descW < 20 {
 		descW = 20
 	}
-	amtW := 14
 
 	// Header row
 	headerLine := fmt.Sprintf(" %-*s  %-*s  %*s", dateW, "Date", descW, "Description", amtW, "Amount")
@@ -310,7 +312,7 @@ func (m TransactionsModel) View() string {
 
 		if idx == m.cursor {
 			line := fmt.Sprintf("%-*s  %-*s  %*s", dateW, date, descW, desc, amtW, amtStr)
-			b.WriteString(SelectedStyle.Width(m.width - 2).Render(line))
+			b.WriteString(SelectedStyle.Width(m.width).Render(line))
 		} else {
 			datePart := fmt.Sprintf("%-*s  %-*s  ", dateW, date, descW, desc)
 			amtPart := MoneyStyle(tx.Amount).Render(fmt.Sprintf("%*s", amtW, amtStr))
