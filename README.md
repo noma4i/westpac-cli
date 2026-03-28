@@ -1,11 +1,8 @@
-<table width="100%">
-  <tr>
-    <td><h1>westpac-cli</h1></td>
-    <td align="right"><img src="screenshots/westpac-banking-vector-logo.png" alt="Westpac" height="48"></td>
-  </tr>
-</table>
+<h1>
+  westpac-cli
+  <img src="screenshots/westpac-banking-vector-logo.png" alt="Westpac" height="48" align="right">
+</h1>
 
-<hr>
 
 Unofficial Terminal client for [Westpac](https://www.westpac.com.au/) banking. Built with Go and [Bubbletea](https://github.com/charmbracelet/bubbletea).
 
