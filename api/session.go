@@ -2,12 +2,10 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
-	"time"
 
 	"github.com/noma4i/westpac-cli/models"
 )
@@ -62,7 +60,6 @@ func (c *Client) SaveSession(customerID, profileID string) error {
 		ProfileID:  profileID,
 		XSRFToken:  xsrf,
 		Cookies:    cookies,
-		ExpiresAt:  time.Now().Add(30 * time.Minute),
 	}
 
 	data, err := json.MarshalIndent(session, "", "  ")
@@ -87,10 +84,6 @@ func (c *Client) LoadSession() (*models.SessionData, error) {
 	var session models.SessionData
 	if err := json.Unmarshal(data, &session); err != nil {
 		return nil, err
-	}
-
-	if session.IsExpired() {
-		return nil, fmt.Errorf("session expired")
 	}
 
 	// Restore cookies to the jar
